@@ -1,11 +1,9 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 function App() {
  const handleSubmit = (event) => {
     event.preventDefault();
-
-
  }
+ const [ file, setFile ] = useState(null);
   return (
     <div className='bg-gray-100 h-screen flex justify-center items-center' onSubmit={handleSubmit}>
     <div className='bg-white flex flex-col p-5 justify-center items-center'>
@@ -21,13 +19,12 @@ function App() {
             </svg>
             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+        <input id="dropzone-file" type="file" class="hidden" onChange={(e)=>{setFile(e.target.files[0].name)}}/>
+        {file && <p className='font-bold text-white'>{file}</p>}
+        
         </div>
-        <input id="dropzone-file" type="file" class="hidden" />
     </label>
 </div> 
-
-{/* <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
-<input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"/> */}
 
     </form>
     <br/>
